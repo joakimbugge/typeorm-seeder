@@ -1,0 +1,69 @@
+name: Verify & Release
+
+on: push
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run type checker
+        run: npm run lint:types
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Run tests
+        run: npm run test
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Run build
+        run: npm run build
+
+  #release:
+  #  name: Release
+  #  if: ${{ contains(fromJSON('["main", "next", "beta"]'), github.ref_name) }}
+  #  runs-on: ubuntu-latest
+  #  needs: [lint, test, build]
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v2
+  #      with:
+  #        fetch-depth: 0
+
+  #    - name: Setup environment
+  #      uses: ./.github/actions/setup
+
+  #    - name: Build
+  #      run: npm run build
+
+  #    - name: Release
+  #      env:
+  #        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  #        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #      run: npx semantic-release

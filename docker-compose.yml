@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    environment:
+      - POSTGRESQL_PASSWORD=postgres
+    ports:
+      - "5432:5432"

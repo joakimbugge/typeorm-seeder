@@ -1,0 +1,102 @@
+{
+  "name": "@birdbrain/typeorm-seeder",
+  "version": "0.0.0-dev",
+  "description": "TypeORM Seeder",
+  "license": "MIT",
+  "author": {
+    "name": "Joakim Bugge",
+    "email": "joakim.bugge@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joakimbugge/typeorm-seeder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joakimbugge/typeorm-seeder/issues",
+    "email": "joakim.bugge@gmail.com"
+  },
+  "keywords": [
+    "typeorm",
+    "seeder"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "start": "ts-node playground/cli.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --collectCoverage",
+    "build": "rollup -c rollup.config.js",
+    "lint": "eslint .",
+    "lint:commit": "commitlint",
+    "lint:types": "tsc --noEmit",
+    "prettify": "prettier --write src",
+    "postversion": "cp -r package.json ..",
+    "prepare": "is-ci || husky install"
+  },
+  "peerDependencies": {
+    "typeorm": ">=0.2.x"
+  },
+  "dependencies": {
+    "@hapi/topo": "^5.1.0",
+    "app-root-path": "^3.0.0",
+    "glob": "^7.1.7",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-angular": "^15.0.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@tsconfig/node14": "^1.0.1",
+    "@types/app-root-path": "^1.2.4",
+    "@types/faker": "^5.5.8",
+    "@types/glob": "^7.1.4",
+    "@types/jest": "^27.0.2",
+    "@types/lodash": "^4.14.175",
+    "@types/node": "^16.10.3",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "commitlint": "^15.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "faker": "^5.5.3",
+    "husky": "^7.0.2",
+    "is-ci": "^3.0.0",
+    "jest": "^27.2.4",
+    "lint-staged": "^12.0.3",
+    "pg": "^8.7.1",
+    "prettier": "^2.4.1",
+    "rollup": "^2.58.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.0",
+    "semantic-release": "^18.0.0",
+    "sqlite3": "^5.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "tsconfig-paths": "^3.11.0",
+    "typeorm": "^0.2.41",
+    "typescript": "^4.4.3"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "tsc --noEmit",
+      "eslint",
+      "prettier --write"
+    ],
+    "src/**/*.json": [
+      "prettier --write"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
