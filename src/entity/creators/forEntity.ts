@@ -14,8 +14,6 @@ export interface EntityCreator<T> {
 }
 
 export function forEntity<T>(entity: Entity<T>, connection?: Connection): EntityCreator<T> {
-  const conn = connection || getConnectionForEntity(entity);
-
   return {
     create() {
       return create(entity);
@@ -24,9 +22,11 @@ export function forEntity<T>(entity: Entity<T>, connection?: Connection): Entity
       return createMany(amount, entity);
     },
     persist() {
+      const conn = connection || getConnectionForEntity(entity);
       return persist(entity, conn);
     },
     persistMany(amount) {
+      const conn = connection || getConnectionForEntity(entity);
       return persistMany(amount, entity, conn);
     },
   };
