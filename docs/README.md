@@ -1,3 +1,3 @@
 # @airhead/typeorm-seeder
 
-Initial page.
+Initial page. Test.
