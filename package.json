@@ -1,7 +1,7 @@
 {
-  "name": "@birdbrain/typeorm-seeder",
+  "name": "@airhead/typeorm-seeder",
   "version": "0.0.0-dev",
-  "description": "TypeORM Seeder",
+  "description": "Decorative seeder for TypeORM",
   "license": "MIT",
   "author": {
     "name": "Joakim Bugge",
