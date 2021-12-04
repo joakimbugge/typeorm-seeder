@@ -5,6 +5,7 @@ import { persist } from '../../../src/entity/builders/persist';
 import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
+import { InheritanceEntityMock } from '../mocks/inheritance/InheritanceEntityMock';
 import { ManyToManyPrimaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManyPrimaryEntityMock';
 import { ManyToManySecondaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManySecondaryEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/seeded-relations/many-to-one/ManyToOneChildEntityMock';
@@ -127,6 +128,20 @@ describe(persist.name, () => {
 
       expect(entity?.name.other.first).toStrictEqual(expect.any(String));
       expect(entity?.name.other.last).toStrictEqual(expect.any(String));
+    });
+  });
+
+  describe('with inheritance', () => {
+    it('seeds properties from parent entities', async () => {
+      const connection = await createInMemoryDatabase([InheritanceEntityMock]);
+
+      await persist(InheritanceEntityMock, connection);
+
+      const entity = await getRepository(InheritanceEntityMock).findOne();
+
+      expect(entity?.name).toEqual(expect.any(String));
+      expect(entity?.address).toEqual(expect.any(String));
+      expect(entity?.age).toEqual(expect.any(Number));
     });
   });
 });

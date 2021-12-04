@@ -5,6 +5,7 @@ import { persistMany } from '../../../src/entity/builders/persistMany';
 import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
+import { InheritanceEntityMock } from '../mocks/inheritance/InheritanceEntityMock';
 import { ManyToManyPrimaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManyPrimaryEntityMock';
 import { ManyToManySecondaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManySecondaryEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/seeded-relations/many-to-one/ManyToOneChildEntityMock';
@@ -154,6 +155,20 @@ describe(persistMany.name, () => {
 
       expect(firstEntity.name.other.first).not.toEqual(secondEntity.name.other.first);
       expect(firstEntity.name.other.last).not.toEqual(secondEntity.name.other.last);
+    });
+  });
+
+  describe('with inheritance', () => {
+    it('seeds unequal properties from parent entities', async () => {
+      const connection = await createInMemoryDatabase([InheritanceEntityMock]);
+
+      await persistMany(2, InheritanceEntityMock, connection);
+
+      const [firstEntity, secondEntity] = await getRepository(InheritanceEntityMock).find();
+
+      expect(firstEntity.name).not.toEqual(secondEntity.name);
+      expect(firstEntity.address).not.toEqual(secondEntity.address);
+      expect(firstEntity.age).not.toEqual(secondEntity.age);
     });
   });
 });

@@ -5,6 +5,7 @@ import { createMany } from '../../../src/entity/builders/createMany';
 import { removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
+import { InheritanceEntityMock } from '../mocks/inheritance/InheritanceEntityMock';
 import { ManyToManyPrimaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManyPrimaryEntityMock';
 import { ManyToManySecondaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManySecondaryEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/seeded-relations/many-to-one/ManyToOneChildEntityMock';
@@ -100,6 +101,17 @@ describe(createMany.name, () => {
 
       expect(firstEntity.name.other.first).not.toEqual(secondEntity.name.other.first);
       expect(firstEntity.name.other.last).not.toEqual(secondEntity.name.other.last);
+    });
+  });
+
+  describe('with inheritance', () => {
+    it('seeds unequal properties from parent entities', () => {
+      const entities = createMany(2, InheritanceEntityMock);
+      const [firstEntity, secondEntity] = entities;
+
+      expect(firstEntity.name).not.toEqual(secondEntity.name);
+      expect(firstEntity.address).not.toEqual(secondEntity.address);
+      expect(firstEntity.age).not.toEqual(secondEntity.age);
     });
   });
 });
