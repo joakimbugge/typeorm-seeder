@@ -9,8 +9,8 @@ export interface SeedPropertyOptions {
 export abstract class SeedStore {
   private static store: Map<Entity, Record<any, SeedPropertyOptions>> = new Map();
 
-  public static get<T extends Entity>(entity: T): Record<keyof T | string, SeedPropertyOptions> {
-    return this.store.get(entity) || getDefaultOptions();
+  public static get<T>(entity: Entity<T>): Record<keyof T | string, SeedPropertyOptions> {
+    return this.getInheritedOptions(entity) || getDefaultOptions();
   }
 
   public static set<T extends Entity>(
@@ -28,6 +28,25 @@ export abstract class SeedStore {
 
   public static clear(): void {
     return this.store.clear();
+  }
+
+  private static getInheritedOptions<T>(
+    entity: Entity<T>,
+  ): Record<keyof T | string, SeedPropertyOptions> {
+    const options = new Map<string, SeedPropertyOptions>();
+
+    const getOptionsFromParent = (parentEntity: Entity): void => {
+      const parentOptions = this.store.get(parentEntity);
+
+      if (parentOptions) {
+        Object.keys(parentOptions).forEach((option) => options.set(option, parentOptions[option]));
+        getOptionsFromParent(Object.getPrototypeOf(parentEntity));
+      }
+    };
+
+    getOptionsFromParent(entity);
+
+    return <Record<keyof T | string, SeedPropertyOptions>>Object.fromEntries(options);
   }
 }
 
