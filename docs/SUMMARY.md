@@ -16,13 +16,12 @@
 * [Embedded entities](entity/embedded-entity.md)
 * [Inherited entities](entity/inherited-entity.md)
 * Relations
-  * [One to one](relations/one-to-one.md)
-  * [One to many](relations/one-to-many.md)
-  * [Many to one](relations/many-to-one.md)
-  * [Many to many](relations/many-to-many.md)
+  * [One-to-one](relations/one-to-one.md)
+  * [One-to-many](relations/one-to-many.md)
+  * [Many-to-one](relations/many-to-one.md)
+  * [Many-to-many](relations/many-to-many.md)
 
 ## Seeders
 
 * [Create seeder](seeders/create-seeder.md)
 * [Run seeders](seeders/run-seeders.md)
-* [Dependencies](seeders/dependencies.md)

@@ -39,7 +39,7 @@ npm install @airhead/typeorm-seeder
 
 ### Entities
 
-```ts
+```typescript
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '@airhead/typeorm-seeder';
 
@@ -54,7 +54,7 @@ export class User {
 }
 ```
 
-```ts
+```typescript
 import { createConnection } from 'typeorm';
 import { forEntity } from '@airhead/typeorm-seeder';
 
@@ -71,7 +71,7 @@ const user = await forEntity(User).persist();
 
 ### Seeders
 
-```ts
+```typescript
 import { Seeder, BaseSeeder } from '@airhead/typeorm-seeder';
 
 @Seeder({ runsBefore: [SomeOtherSeeder] })
@@ -84,7 +84,7 @@ export class UserSeeder implements BaseSeeder {
 }
 ```
 
-```ts
+```typescript
 import { createConnection } from 'typeorm';
 import { forSeeders } from '@airhead/typeorm-seeder';
 

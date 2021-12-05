@@ -42,10 +42,10 @@ const user = forEntity(User).create();
 
 // User {
 //   name: {
-//     first: 'Jack'
+//     first: 'Jack',
 //     last: 'Smith'
 //   }
 // }
 ```
 
-Nested embedded entities is supported.
+There's support for nested embedded entities.

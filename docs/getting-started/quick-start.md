@@ -8,6 +8,7 @@ have after the entity has been created.
 ```typescript
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '@airhead/typeorm-seeder';
+import * as faker from 'faker';
 
 @Entity()
 export class User {

@@ -16,7 +16,7 @@ const firstUser = await forEntity(User, firstConnection).persist();
 
 // User {
 //   id: 1,
-//   name: 'Jack'
+//   name: 'Jack',
 //   age: 25
 // }
 
@@ -24,7 +24,7 @@ const secondUser = await forEntity(User, secondConnection).persist();
 
 // User {
 //   id: 1,
-//   name: 'John'
+//   name: 'John',
 //   age: 25
 // }
 ```

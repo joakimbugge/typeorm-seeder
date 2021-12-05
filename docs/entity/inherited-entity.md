@@ -44,8 +44,8 @@ import { User } from './entities/User';
 const user = forEntity(User).create();
 
 // User {
-//   name: 'John'
-//   age: 32
+//   name: 'John',
+//   age: 32,
 //   streetName: 'Willow Avenue'
 // }
 ```
