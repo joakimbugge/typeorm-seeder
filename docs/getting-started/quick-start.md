@@ -2,7 +2,7 @@
 
 ## Decorate entity
 
-Decorate entity properties with `@Seed()`. Provide a callback function returning the value you'd like the property to
+Decorate entity properties with `@Seed()`. Provide a function returning the value you'd like the property to
 have after the entity has been created.
 
 ```typescript
@@ -27,7 +27,7 @@ relations will be seeded as well, [read more about relations](relations).
 
 ### Create
 
-Creates and returns one or more entities. The callback function provided to `@Seed()` will be called for each entity so
+Creates and returns one or more entities. The function provided to `@Seed()` will be called for each entity so
 no entity will be seeded equal (unless intended to)
 .
 
