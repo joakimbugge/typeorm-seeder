@@ -1,12 +1,9 @@
 # Decorate properties
 
-Use `@Seed()` to decorate properties you'd like to set during seeding. 
+Use `@Seed()` to decorate properties you'd like to set during seeding.
 
----
-
-Provide a function returning the value the
-property should have after creation. The function is called for each property on each seeded entity so no property on
-any seeded entity should be equal unless intended to.
+Provide a function returning the value the property should have after creation. The function is called for each property
+on each seeded entity so no property on any seeded entity should be equal unless intended to.
 
 ```typescript
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
@@ -27,4 +24,3 @@ export class User {
   public age!: number;
 }
 ```
-

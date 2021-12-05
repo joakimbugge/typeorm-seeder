@@ -9,12 +9,12 @@
 
 ## Entities
 
-* [Decorate properties](entities/decorate.md)
-* [Create](entities/create.md)
-* [Persist](entities/persist.md)
-    * [Multiple connections](entities/multiple-connections.md)
-* [Embedded entities](entities/embedded-entities.md)
-* [Inherited entities](entities/inherited-entities.md)
+* [Decorate properties](entity/decorate-properties.md)
+* [Create](entity/create.md)
+* [Persist](entity/persist.md)
+    * [Multiple connections](entity/multiple-connections.md)
+* [Embedded entities](entity/embedded-entity.md)
+* [Inherited entities](entity/inherited-entity.md)
 * Relations
   * [One to one](relations/one-to-one.md)
   * [One to many](relations/one-to-many.md)

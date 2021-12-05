@@ -1,6 +1,6 @@
 # Quick start
 
-## Decorate entity
+## Decorate properties
 
 Decorate entity properties with `@Seed()`. Provide a function returning the value you'd like the property to
 have after the entity has been created.
@@ -23,7 +23,7 @@ export class User {
 ## Seed entity
 
 Use `forEntity()` to seed a new entity. The builder returns multiple methods for creating and persisting. Be aware that
-relations will be seeded as well, [read more about relations](relations).
+relations will be seeded as well, [read more about relations](entity/relations.md).
 
 ### Create
 
@@ -44,7 +44,7 @@ const user = forEntity(User).create();
 ### Persist
 
 Creates and persists one or more entities. A [TypeORM connection](https://typeorm.io/#/connection) is required. Read
-more about [multiple connections](multiple-connections).
+more about [multiple connections](../entity/multiple-connections.md).
 
 ```typescript
 import { createConnection } from 'typeorm';

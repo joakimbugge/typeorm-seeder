@@ -1,6 +1,6 @@
 # Create
 
-To seed an entity, use `forEntity()` and provide the entity you'd like to seed.
+Use `forEntity()` and provide the entity you'd like to seed.
 
 To seed a single entity, call `create()`.
 
