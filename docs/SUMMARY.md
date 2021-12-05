@@ -23,5 +23,5 @@
 
 ## Seeders
 
-* [Create seeder](seeders/create-seeder.md)
-* [Run seeders](seeders/run-seeders.md)
+* [Create seeder](seeder/create-seeder.md)
+* [Run seeders](seeder/run-seeders.md)
