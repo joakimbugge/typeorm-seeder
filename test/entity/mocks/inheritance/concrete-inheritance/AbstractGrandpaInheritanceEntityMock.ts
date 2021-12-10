@@ -1,6 +1,6 @@
 import * as faker from 'faker';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Seed } from '../../../../src';
+import { Seed } from '../../../../../src';
 
 export abstract class AbstractGrandpaInheritanceEntityMock {
   @PrimaryGeneratedColumn()
