@@ -5,7 +5,9 @@ import { persist } from '../../../src/entity/builders/persist';
 import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
-import { InheritanceEntityMock } from '../mocks/inheritance/InheritanceEntityMock';
+import { InheritanceEntityMock } from '../mocks/inheritance/concrete-inheritance/InheritanceEntityMock';
+import { SingleInheritanceEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceEntityMock';
+import { SingleInheritanceChildEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceChildEntityMock';
 import { ManyToManyPrimaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManyPrimaryEntityMock';
 import { ManyToManySecondaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManySecondaryEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/seeded-relations/many-to-one/ManyToOneChildEntityMock';
@@ -131,7 +133,7 @@ describe(persist.name, () => {
     });
   });
 
-  describe('with inheritance', () => {
+  describe('with concrete table inheritance', () => {
     it('seeds properties from parent entities', async () => {
       const connection = await createInMemoryDatabase([InheritanceEntityMock]);
 
@@ -141,6 +143,22 @@ describe(persist.name, () => {
 
       expect(entity?.name).toEqual(expect.any(String));
       expect(entity?.address).toEqual(expect.any(String));
+      expect(entity?.age).toEqual(expect.any(Number));
+    });
+  });
+
+  describe('with single table inheritance', () => {
+    it('seeds properties from parent entities', async () => {
+      const connection = await createInMemoryDatabase([
+        SingleInheritanceEntityMock,
+        SingleInheritanceChildEntityMock,
+      ]);
+
+      await persist(SingleInheritanceChildEntityMock, connection);
+
+      const entity = await getRepository(SingleInheritanceChildEntityMock).findOne();
+
+      expect(entity?.name).toEqual(expect.any(String));
       expect(entity?.age).toEqual(expect.any(Number));
     });
   });

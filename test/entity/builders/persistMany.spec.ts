@@ -5,7 +5,9 @@ import { persistMany } from '../../../src/entity/builders/persistMany';
 import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
-import { InheritanceEntityMock } from '../mocks/inheritance/InheritanceEntityMock';
+import { InheritanceEntityMock } from '../mocks/inheritance/concrete-inheritance/InheritanceEntityMock';
+import { SingleInheritanceEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceEntityMock';
+import { SingleInheritanceChildEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceChildEntityMock';
 import { ManyToManyPrimaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManyPrimaryEntityMock';
 import { ManyToManySecondaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManySecondaryEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/seeded-relations/many-to-one/ManyToOneChildEntityMock';
@@ -158,7 +160,7 @@ describe(persistMany.name, () => {
     });
   });
 
-  describe('with inheritance', () => {
+  describe('with concrete table inheritance', () => {
     it('seeds unequal properties from parent entities', async () => {
       const connection = await createInMemoryDatabase([InheritanceEntityMock]);
 
@@ -168,6 +170,24 @@ describe(persistMany.name, () => {
 
       expect(firstEntity.name).not.toEqual(secondEntity.name);
       expect(firstEntity.address).not.toEqual(secondEntity.address);
+      expect(firstEntity.age).not.toEqual(secondEntity.age);
+    });
+  });
+
+  describe('with single table inheritance', () => {
+    it('seeds unequal properties from parent entities', async () => {
+      const connection = await createInMemoryDatabase([
+        SingleInheritanceEntityMock,
+        SingleInheritanceChildEntityMock,
+      ]);
+
+      await persistMany(2, SingleInheritanceChildEntityMock, connection);
+
+      const [firstEntity, secondEntity] = await getRepository(
+        SingleInheritanceChildEntityMock,
+      ).find();
+
+      expect(firstEntity.name).not.toEqual(secondEntity.name);
       expect(firstEntity.age).not.toEqual(secondEntity.age);
     });
   });
