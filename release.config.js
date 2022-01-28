@@ -1,5 +1,4 @@
 module.exports = {
-  dryRun: true,
   branches: ['main', 'next', { name: 'beta', prerelease: true }],
   plugins: [
     [

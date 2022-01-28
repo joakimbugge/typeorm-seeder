@@ -35,7 +35,6 @@ export default [
               delete json.scripts;
               delete json.devDependencies;
               delete json['lint-staged'];
-              delete json.publishConfig;
 
               return JSON.stringify(json, null, 2);
             },
