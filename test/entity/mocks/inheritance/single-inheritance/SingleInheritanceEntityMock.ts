@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import { randFirstName } from '@ngneat/falso';
 import { Column, Entity, PrimaryGeneratedColumn, TableInheritance } from 'typeorm';
 import { Seed } from '../../../../../src';
 
@@ -9,6 +9,6 @@ export class SingleInheritanceEntityMock {
   public id!: number;
 
   @Column()
-  @Seed(() => faker.name.firstName())
+  @Seed(randFirstName)
   public name!: string;
 }

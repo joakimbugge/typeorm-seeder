@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import { randNumber } from '@ngneat/falso';
 import { ChildEntity, Column } from 'typeorm';
 import { Seed } from '../../../../../src';
 import { SingleInheritanceEntityMock } from './SingleInheritanceEntityMock';
@@ -6,6 +6,6 @@ import { SingleInheritanceEntityMock } from './SingleInheritanceEntityMock';
 @ChildEntity()
 export class SingleInheritanceChildEntityMock extends SingleInheritanceEntityMock {
   @Column()
-  @Seed(() => faker.datatype.number())
+  @Seed(randNumber)
   public age!: number;
 }

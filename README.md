@@ -51,7 +51,7 @@ export class User {
   public id!: number;
 
   @Column()
-  @Seed(() => faker.name.firstName())
+  @Seed(() => getRandomName())
   public name!: string;
 }
 ```
