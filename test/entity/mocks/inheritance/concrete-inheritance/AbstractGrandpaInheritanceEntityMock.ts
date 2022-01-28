@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import { randStreetName } from '@ngneat/falso';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../../../src';
 
@@ -7,6 +7,6 @@ export abstract class AbstractGrandpaInheritanceEntityMock {
   public id!: number;
 
   @Column()
-  @Seed(() => faker.address.streetName())
+  @Seed(randStreetName)
   public address!: string;
 }

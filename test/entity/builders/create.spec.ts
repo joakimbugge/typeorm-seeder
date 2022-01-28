@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import { randFirstName, randNumber } from '@ngneat/falso';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../src';
 import { create } from '../../../src/entity/builders/create';
@@ -106,10 +106,10 @@ class EntityMock {
   public id!: number;
 
   @Column()
-  @Seed(() => faker.name.firstName())
+  @Seed(randFirstName)
   public name!: string;
 
   @Column()
-  @Seed(() => faker.datatype.number())
+  @Seed(randNumber)
   public age!: number;
 }

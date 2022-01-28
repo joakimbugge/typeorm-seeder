@@ -1,13 +1,13 @@
-import * as faker from 'faker';
+import { randFirstName, randLastName } from '@ngneat/falso';
 import { Column } from 'typeorm';
 import { Seed } from '../../../../src';
 
 export class EmbedMock {
   @Column()
-  @Seed(() => faker.name.firstName())
+  @Seed(randFirstName)
   public first!: string;
 
   @Column()
-  @Seed(() => faker.name.lastName())
+  @Seed(randLastName)
   public last!: string;
 }
