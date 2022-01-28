@@ -34,6 +34,7 @@ jobs:
 
   build:
     name: Build
+    if: ${{ !contains(fromJSON('["main", "next", "beta"]'), github.ref_name) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
