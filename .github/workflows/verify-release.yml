@@ -1,5 +1,4 @@
 name: Verify & Release
-
 on: push
 
 jobs:
