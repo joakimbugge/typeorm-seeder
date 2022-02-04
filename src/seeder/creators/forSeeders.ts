@@ -9,6 +9,7 @@ export interface SeederCreator {
 
 export interface SeederCreatorOptions {
   resolver?: (seeder: SeederConstructor) => BaseSeeder;
+  onEachComplete?: (seeder: SeederConstructor) => void;
 }
 
 export function forSeeders(seeders: (SeederConstructor | string)[]): SeederCreator {

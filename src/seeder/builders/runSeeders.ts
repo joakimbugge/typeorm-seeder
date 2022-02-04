@@ -13,9 +13,14 @@ export async function runSeeders(
   const independentSeeders = getIndependentSeeders(seeders);
   const completedSeeders: SeederConstructor[] = [];
 
-  const runSeeder = async (seeder: SeederConstructor): Promise<unknown> => {
+  const runSeeder = async (seeder: SeederConstructor): Promise<void> => {
     completedSeeders.push(seeder);
-    return resolveSeeder(seeder, options).seed();
+
+    await resolveSeeder(seeder, options).seed();
+
+    if (options?.onEachComplete) {
+      await options.onEachComplete(seeder);
+    }
   };
 
   for (const seeder of dependentSeeders) {
