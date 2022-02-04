@@ -5,7 +5,7 @@ export { BaseSeeder } from './seeder/interfaces/BaseSeeder';
 export { SeederConstructor } from './seeder/models/SeederConstructor';
 export { EntityConnectionError } from './errors';
 export { forEntity, EntityCreator } from './entity/creators/forEntity';
-export { forSeeders, SeederCreatorOptions, SeederCreator } from './seeder/creators/forSeeders';
+export { forSeeders, SeederRunnerOptions, SeederRunner } from './seeder/creators/forSeeders';
 export { CreateManyOptions } from './entity/builders/createMany';
 export { CreateOptions } from './entity/builders/create';
 export { PersistManyOptions } from './entity/builders/persistMany';

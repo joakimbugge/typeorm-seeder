@@ -1,4 +1,4 @@
-import { SeederCreatorOptions } from '../creators/forSeeders';
+import { SeederRunnerOptions } from '../creators/forSeeders';
 import { SeederConstructor } from '../models/SeederConstructor';
 import { SeederEntry } from '../stores/SeederStore';
 import { getDependentSeeders } from '../utils/getDependentSeeders';
@@ -7,7 +7,7 @@ import { resolveSeeder } from '../utils/resolveSeeder';
 
 export async function runSeeders(
   seeders: SeederEntry[],
-  options?: SeederCreatorOptions,
+  options?: SeederRunnerOptions,
 ): Promise<SeederConstructor[]> {
   const dependentSeeders = getDependentSeeders(seeders);
   const independentSeeders = getIndependentSeeders(seeders);
