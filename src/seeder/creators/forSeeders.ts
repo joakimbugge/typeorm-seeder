@@ -3,16 +3,16 @@ import { BaseSeeder } from '../interfaces/BaseSeeder';
 import { SeederConstructor } from '../models/SeederConstructor';
 import { getSeederEntries } from '../utils/getSeederEntries';
 
-export interface SeederCreator {
-  run(options?: SeederCreatorOptions): Promise<SeederConstructor[]>;
+export interface SeederRunner {
+  run(options?: SeederRunnerOptions): Promise<SeederConstructor[]>;
 }
 
-export interface SeederCreatorOptions {
+export interface SeederRunnerOptions {
   resolver?: (seeder: SeederConstructor) => BaseSeeder;
   onEachComplete?: (seeder: SeederConstructor) => void;
 }
 
-export function forSeeders(seeders: (SeederConstructor | string)[]): SeederCreator {
+export function forSeeders(seeders: (SeederConstructor | string)[]): SeederRunner {
   return {
     run(options): Promise<SeederConstructor[]> {
       const entries = getSeederEntries(seeders);
