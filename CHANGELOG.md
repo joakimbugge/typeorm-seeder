@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/joakimbugge/typeorm-seeder/compare/v1.0.0...v1.1.0) (2022-02-04)
+
+
+### Features
+
+* add onEachComplete event to forSeeders() ([#80](https://github.com/joakimbugge/typeorm-seeder/issues/80)) ([db19aa3](https://github.com/joakimbugge/typeorm-seeder/commit/db19aa3ac6bccf740a7596b7e533a171270bf0e1))
+
+
+### Bug fixes
+
+* rename type SeederCreator to SeederRunner ([#81](https://github.com/joakimbugge/typeorm-seeder/issues/81)) ([7081bd7](https://github.com/joakimbugge/typeorm-seeder/commit/7081bd7ece688c75665f11fccaa129e74f142efc))
+
 ## 1.0.0 (2022-01-28)
 
 
