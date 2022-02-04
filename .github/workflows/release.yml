@@ -6,6 +6,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run type checker
+        run: npm run lint:types
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Run tests
+        run: npm run test
+
   release:
     name: Release
     if: ${{ contains(fromJSON('["main", "next", "beta"]'), github.ref_name) }}
