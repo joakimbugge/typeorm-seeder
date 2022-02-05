@@ -27,6 +27,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --collectCoverage",
     "build": "rollup -c rollup.config.js",
+    "pack": "npm run build && cd dist && npm pack",
     "lint": "eslint .",
     "lint:commit": "commitlint",
     "lint:types": "tsc --noEmit",
