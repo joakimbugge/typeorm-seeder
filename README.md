@@ -20,6 +20,12 @@
 <br />
 <br />
 
+## Installation
+
+```bash
+npm install @airhead/typeorm-seeder typeorm
+```
+
 ## Prerequisites
 
 Enable decorators in `tsconfig.json`
@@ -33,13 +39,9 @@ Enable decorators in `tsconfig.json`
 }
 ```
 
-## Install
+## Documentation
 
-```bash
-npm install @airhead/typeorm-seeder
-```
-
-[TypeORM](https://github.com/typeorm/typeorm) is a peer-dependency.
+Coming soon! In the meantime, submit an [issue](https://github.com/joakimbugge/typeorm-seeder/issues).
 
 ## Quick start
 
