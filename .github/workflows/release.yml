@@ -38,6 +38,7 @@ jobs:
   release:
     name: Release
     if: ${{ contains(fromJSON('["main", "next", "beta"]'), github.ref_name) }}
+    needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
