@@ -1,20 +1,24 @@
-<br>
-<br>
+<br />
+<br />
 
-<h1 align='center'>
-    @airhead/typeorm-seeder
-</h1>
+<div align='center'>
+    <img src='https://github.com/joakimbugge/typeorm-seeder/raw/main/assets/logo.png' alt='Logo' />
+    <br /><br /><br />
+    <a href='https://www.npmjs.com/package/@airhead/typeorm-seeder'>
+        <img src='https://img.shields.io/github/v/release/joakimbugge/typeorm-seeder?include_prereleases' alt='Latest release' />
+    </a>
+    <a href='https://github.com/joakimbugge/typeorm-seeder/blob/main/LICENSE'>
+        <img src='https://img.shields.io/github/license/joakimbugge/typeorm-seeder' alt='License' />
+    </a>
+    <img src="https://img.shields.io/librariesio/release/npm/@airhead/typeorm-seeder" alt='Dependencies'>
+</div>
 
-<p align='center'>
-<img src='https://img.shields.io/github/v/release/joakimbugge/typeorm-seeder?include_prereleases' alt='Latest release' />
-<img src='https://img.shields.io/github/license/joakimbugge/typeorm-seeder' alt='License' />
-<img src='https://img.shields.io/github/workflow/status/joakimbugge/typeorm-seeder/Verify%20&%20Release' alt='Build status' />
-</p>
+<br />
 
 <p align='center'>Seed <a href='https://github.com/typeorm/typeorm'>TypeORM</a> entities decoratively</p>
 
-<br>
-<br>
+<br />
+<br />
 
 ## Prerequisites
 
@@ -92,3 +96,7 @@ await createConnection();
 
 await forSeeders([UserSeeder, SomeOtherSeeder]).run();
 ```
+
+---
+
+<a href="https://www.flaticon.com/free-icons/grow" title="grow icons">Grow icons created by Freepik - Flaticon</a>
