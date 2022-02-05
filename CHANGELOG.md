@@ -1,3 +1,10 @@
+### [1.1.1](https://github.com/joakimbugge/typeorm-seeder/compare/v1.1.0...v1.1.1) (2022-02-05)
+
+
+### Bug fixes
+
+* constructor argument type of `SeederConstructor` is now any[] ([#82](https://github.com/joakimbugge/typeorm-seeder/issues/82)) ([8a5b556](https://github.com/joakimbugge/typeorm-seeder/commit/8a5b5566f8cc33df4b38cdbb7c13a54b47a5eb59))
+
 ## [1.1.0](https://github.com/joakimbugge/typeorm-seeder/compare/v1.0.0...v1.1.0) (2022-02-04)
 
 
