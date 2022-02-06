@@ -1,0 +1,22 @@
+on: ['push', 'pull_request']
+
+name: Coveralls
+
+jobs:
+  build:
+    name: Publish coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup environment
+        uses: ./.github/actions/setup
+
+      - name: Test
+        run: npm run test:coverage
+
+      - name: Publish
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

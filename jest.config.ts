@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
   },
   collectCoverageFrom: ['src/**/*.(t|j)s'],
   coverageDirectory: './coverage',
+  coverageReporters: ['lcov'],
   testEnvironment: 'node',
   setupFilesAfterEnv: ['./jest.setup.ts'],
 };
