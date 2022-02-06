@@ -7,6 +7,9 @@
     <a href='https://www.npmjs.com/package/@airhead/typeorm-seeder'>
         <img src='https://img.shields.io/github/v/release/joakimbugge/typeorm-seeder?include_prereleases' alt='Latest release' />
     </a>
+    <a href='https://coveralls.io/github/joakimbugge/typeorm-seeder?branch=main'>
+        <img alt="Test coverage" src="https://img.shields.io/coveralls/github/joakimbugge/typeorm-seeder">
+    </a>
     <a href='https://github.com/joakimbugge/typeorm-seeder/blob/main/LICENSE'>
         <img src='https://img.shields.io/github/license/joakimbugge/typeorm-seeder' alt='License' />
     </a>
