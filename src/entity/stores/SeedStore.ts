@@ -15,7 +15,7 @@ export abstract class SeedStore {
 
   public static set<T extends Entity>(
     entity: T,
-    property: keyof T,
+    property: keyof T | string,
     options: SeedPropertyOptions,
   ): void {
     const properties = this.store.get(entity);
