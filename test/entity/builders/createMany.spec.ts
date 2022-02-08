@@ -1,4 +1,5 @@
-import { randFirstName, randNumber } from '@ngneat/falso';
+import { randNumber } from '@ngneat/falso';
+import * as crypto from 'crypto';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../src';
 import { createMany } from '../../../src/entity/builders/createMany';
@@ -133,7 +134,7 @@ class EntityMock {
   public id!: number;
 
   @Column()
-  @Seed(randFirstName)
+  @Seed(() => crypto.randomUUID())
   public name!: string;
 
   @Column()

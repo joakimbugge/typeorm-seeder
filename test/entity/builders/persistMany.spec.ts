@@ -1,4 +1,5 @@
-import { randFirstName, randNumber } from '@ngneat/falso';
+import { randNumber } from '@ngneat/falso';
+import * as crypto from 'crypto';
 import { Column, Entity, getRepository, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../src';
 import { persistMany } from '../../../src/entity/builders/persistMany';
@@ -6,8 +7,8 @@ import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/crea
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
 import { InheritanceEntityMock } from '../mocks/inheritance/concrete-inheritance/InheritanceEntityMock';
-import { SingleInheritanceEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceEntityMock';
 import { SingleInheritanceChildEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceChildEntityMock';
+import { SingleInheritanceEntityMock } from '../mocks/inheritance/single-inheritance/SingleInheritanceEntityMock';
 import { ManyToManyPrimaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManyPrimaryEntityMock';
 import { ManyToManySecondaryEntityMock } from '../mocks/seeded-relations/many-to-many/ManyToManySecondaryEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/seeded-relations/many-to-one/ManyToOneChildEntityMock';
@@ -199,7 +200,7 @@ class EntityMock {
   public id!: number;
 
   @Column()
-  @Seed(randFirstName)
+  @Seed(() => crypto.randomUUID())
   public name!: string;
 
   @Column()
