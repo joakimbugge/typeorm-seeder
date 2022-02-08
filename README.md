@@ -23,6 +23,13 @@
 <br />
 <br />
 
+## Introduction
+
+A decorator based seeding tool for TypeORM. Decorate your entities like you normally would, and populate your database
+automatically. Handy for prototypes and test mocking. Relations, inheritance and embedded entities are supported.
+
+The tool is in early stages and in active development, breaking changes may occur between minor versions.
+
 ## Installation
 
 ```bash
@@ -78,7 +85,6 @@ const user = await forEntity(User).persist();
 //   name: 'Jack'
 // }
 ```
-
 
 ### Seeders
 
