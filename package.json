@@ -36,7 +36,7 @@
     "prepare": "is-ci || husky install"
   },
   "peerDependencies": {
-    "typeorm": ">=0.2.x"
+    "typeorm": "^0.3.1"
   },
   "dependencies": {
     "@hapi/topo": "^5.1.0",
