@@ -73,12 +73,12 @@ export class User {
 ```
 
 ```ts
-import { createConnection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { forEntity } from '@airhead/typeorm-seeder';
 
-await createConnection();
+const dataSource = await new DataSource().initialize();
 
-const user = await forEntity(User).persist();
+const user = await forEntity(User, dataSource).persist();
 
 // User {
 //   id: 1,
@@ -94,16 +94,14 @@ import { Seeder, BaseSeeder } from '@airhead/typeorm-seeder';
 @Seeder({ runsBefore: [SomeOtherSeeder] })
 export class UserSeeder implements BaseSeeder {
   public seed(): Promise<User[]> {
-    return forEntity(User).persistMany(5);
+    return forEntity(User, dataSource).persistMany(5);
   }
 }
 ```
 
 ```ts
-import { createConnection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { forSeeders } from '@airhead/typeorm-seeder';
-
-await createConnection();
 
 await forSeeders([UserSeeder, SomeOtherSeeder]).run();
 ```
