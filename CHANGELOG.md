@@ -1,3 +1,10 @@
+### [1.2.1](https://github.com/joakimbugge/typeorm-seeder/compare/v1.2.0...v1.2.1) (2022-03-22)
+
+
+### Bug fixes
+
+* bump typeorm peer-dependency to ^0.3.2 ([28980a6](https://github.com/joakimbugge/typeorm-seeder/commit/28980a633a8a7a7b8063a26616d783b41bda0eab))
+
 ## [1.2.0](https://github.com/joakimbugge/typeorm-seeder/compare/v1.1.1...v1.2.0) (2022-03-22)
 
 
