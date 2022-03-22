@@ -35,7 +35,12 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run tests
-        run: npm run test
+        run: npm run test:coverage
+
+      - name: Publish coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     name: Build
