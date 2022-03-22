@@ -1,11 +1,11 @@
-import { Connection, getMetadataArgsStorage } from 'typeorm';
+import { DataSource, getMetadataArgsStorage } from 'typeorm';
 import { Entity } from '../models/Entity';
 
-export function mutateCascadeInsert(entity: Entity, connection: Connection): void {
+export function mutateCascadeInsert(entity: Entity, dataSource: DataSource): void {
   const entities = getRelatedEntities(entity);
 
   entities.forEach((entity) => {
-    const relationsMetadata = connection.getMetadata(entity).relations;
+    const relationsMetadata = dataSource.getMetadata(entity).relations;
 
     relationsMetadata.forEach((relationMetadata) => {
       relationMetadata.isCascadeInsert = true;

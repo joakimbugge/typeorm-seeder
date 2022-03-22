@@ -2,7 +2,6 @@ import { randFirstName, randNumber } from '@ngneat/falso';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../src';
 import { create } from '../../../src/entity/builders/create';
-import { removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
 import { InheritanceEntityMock } from '../mocks/inheritance/concrete-inheritance/InheritanceEntityMock';
@@ -15,8 +14,6 @@ import { OneToOnePrimaryEntityMock } from '../mocks/seeded-relations/one-to-one/
 import { OneToOneSecondaryEntityMock } from '../mocks/seeded-relations/one-to-one/OneToOneSecondaryEntityMock';
 
 describe(create.name, () => {
-  afterEach(() => removeInMemoryDatabase());
-
   it('returns multiple instances', () => {
     const entity = create(EntityMock);
 

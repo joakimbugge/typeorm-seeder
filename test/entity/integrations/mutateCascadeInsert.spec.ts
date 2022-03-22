@@ -1,11 +1,17 @@
+import { DataSource } from 'typeorm';
 import { mutateCascadeInsert } from '../../../src/entity/integrations/mutateCascadeInsert';
-import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
+import {
+  createInMemoryDataSource,
+  removeInMemoryDatabase,
+} from '../../utils/createInMemoryDataSource';
 import { ManyToOneSecondChildEntityMock } from '../mocks/relations/many-to-one/ManyToOneSecondChildEntityMock';
 import { ManyToOneChildEntityMock } from '../mocks/relations/many-to-one/ManyToOneChildEntityMock';
 import { ManyToOneParentEntityMock } from '../mocks/relations/many-to-one/ManyToOneParentEntityMock';
 
 describe(mutateCascadeInsert.name, () => {
-  afterEach(() => removeInMemoryDatabase());
+  let dataSource: DataSource;
+
+  afterEach(() => removeInMemoryDatabase(dataSource));
 
   it('sets isCascadeInsert on all relations', async () => {
     const entities = [
@@ -13,12 +19,13 @@ describe(mutateCascadeInsert.name, () => {
       ManyToOneChildEntityMock,
       ManyToOneSecondChildEntityMock,
     ];
-    const connection = await createInMemoryDatabase(entities);
+
+    dataSource = await createInMemoryDataSource(entities);
 
     entities.forEach((entity) => {
-      mutateCascadeInsert(entity, connection);
+      mutateCascadeInsert(entity, dataSource);
 
-      const relationsMetadata = connection.getMetadata(entity).relations;
+      const relationsMetadata = dataSource.getMetadata(entity).relations;
 
       relationsMetadata.forEach((relationMetadata) => {
         expect(relationMetadata.isCascadeInsert).toBeTruthy();
