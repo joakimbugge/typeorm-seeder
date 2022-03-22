@@ -1,3 +1,11 @@
+## [1.2.0](https://github.com/joakimbugge/typeorm-seeder/compare/v1.1.1...v1.2.0) (2022-03-22)
+
+
+### Features
+
+* bump typeorm peer-dependency to ^0.3.1 ([5027c7a](https://github.com/joakimbugge/typeorm-seeder/commit/5027c7aecc1a7cd3ed8e41d145ab62307af0c098))
+* replace optional `Connection` with required `DataSource` ([b79a650](https://github.com/joakimbugge/typeorm-seeder/commit/b79a6507bde615d911b59e655847ea552d78e0f2))
+
 ### [1.1.1](https://github.com/joakimbugge/typeorm-seeder/compare/v1.1.0...v1.1.1) (2022-02-05)
 
 
