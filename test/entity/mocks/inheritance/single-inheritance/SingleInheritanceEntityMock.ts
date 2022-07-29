@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn, TableInheritance } from 'typeor
 import { Seed } from '../../../../../src';
 
 @Entity()
-@TableInheritance({ column: { type: 'varchar', name: 'type ' } })
+@TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export class SingleInheritanceEntityMock {
   @PrimaryGeneratedColumn()
   public id!: number;
