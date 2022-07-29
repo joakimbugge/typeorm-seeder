@@ -39,7 +39,7 @@
     "typeorm": ">=0.2.x"
   },
   "dependencies": {
-    "@hapi/topo": "^5.1.0",
+    "@hapi/topo": "^6.0.0",
     "app-root-path": "^3.0.0",
     "glob": "^8.0.3",
     "lodash": "^4.17.21",
