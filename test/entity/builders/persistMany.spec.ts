@@ -1,9 +1,12 @@
 import { randNumber } from '@ngneat/falso';
 import * as crypto from 'crypto';
-import { Column, Entity, getRepository, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, DataSource, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../src';
 import { persistMany } from '../../../src/entity/builders/persistMany';
-import { createInMemoryDatabase, removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
+import {
+  createInMemoryDataSource,
+  removeInMemoryDatabase,
+} from '../../utils/createInMemoryDataSource';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
 import { InheritanceEntityMock } from '../mocks/inheritance/concrete-inheritance/InheritanceEntityMock';
@@ -17,15 +20,17 @@ import { OneToOnePrimaryEntityMock } from '../mocks/seeded-relations/one-to-one/
 import { OneToOneSecondaryEntityMock } from '../mocks/seeded-relations/one-to-one/OneToOneSecondaryEntityMock';
 
 describe(persistMany.name, () => {
-  afterEach(() => removeInMemoryDatabase());
+  let dataSource: DataSource;
+
+  afterEach(() => removeInMemoryDatabase(dataSource));
 
   it('returns multiple instances', async () => {
     const ENTITY_COUNT = 2;
-    const connection = await createInMemoryDatabase([EntityMock]);
+    dataSource = await createInMemoryDataSource([EntityMock]);
 
-    await persistMany(ENTITY_COUNT, EntityMock, connection);
+    await persistMany(ENTITY_COUNT, EntityMock, dataSource);
 
-    const entities = await getRepository(EntityMock).find();
+    const entities = await dataSource.getRepository(EntityMock).find();
 
     expect(entities).toHaveLength(ENTITY_COUNT);
 
@@ -35,11 +40,11 @@ describe(persistMany.name, () => {
   });
 
   it('returns entities with seeded properties', async () => {
-    const connection = await createInMemoryDatabase([EntityMock]);
+    dataSource = await createInMemoryDataSource([EntityMock]);
 
-    await persistMany(2, EntityMock, connection);
+    await persistMany(2, EntityMock, dataSource);
 
-    const entities = await getRepository(EntityMock).find();
+    const entities = await dataSource.getRepository(EntityMock).find();
 
     entities.forEach((entity) => {
       expect(entity.name).toStrictEqual(expect.any(String));
@@ -48,11 +53,11 @@ describe(persistMany.name, () => {
   });
 
   it('returns unequal entities', async () => {
-    const connection = await createInMemoryDatabase([EntityMock]);
+    dataSource = await createInMemoryDataSource([EntityMock]);
 
-    await persistMany(2, EntityMock, connection);
+    await persistMany(2, EntityMock, dataSource);
 
-    const entities = await getRepository(EntityMock).find();
+    const entities = await dataSource.getRepository(EntityMock).find();
     const [firstEntity, secondEntity] = entities;
 
     expect(firstEntity.name).not.toStrictEqual(secondEntity.name);
@@ -61,15 +66,17 @@ describe(persistMany.name, () => {
 
   describe('with relations', () => {
     it('seeds one-to-one', async () => {
-      const connection = await createInMemoryDatabase([
+      dataSource = await createInMemoryDataSource([
         OneToOnePrimaryEntityMock,
         OneToOneSecondaryEntityMock,
       ]);
 
-      await persistMany(2, OneToOnePrimaryEntityMock, connection);
+      await persistMany(2, OneToOnePrimaryEntityMock, dataSource);
 
-      const entities = await getRepository(OneToOnePrimaryEntityMock).find({
-        relations: ['sibling'],
+      const entities = await dataSource.getRepository(OneToOnePrimaryEntityMock).find({
+        relations: {
+          sibling: true,
+        },
       });
 
       entities.forEach((entity) => {
@@ -78,15 +85,17 @@ describe(persistMany.name, () => {
     });
 
     it('seeds many-to-one', async () => {
-      const connection = await createInMemoryDatabase([
+      dataSource = await createInMemoryDataSource([
         ManyToOneParentEntityMock,
         ManyToOneChildEntityMock,
       ]);
 
-      await persistMany(2, ManyToOneParentEntityMock, connection);
+      await persistMany(2, ManyToOneParentEntityMock, dataSource);
 
-      const parentEntities = await getRepository(ManyToOneParentEntityMock).find({
-        relations: ['children'],
+      const parentEntities = await dataSource.getRepository(ManyToOneParentEntityMock).find({
+        relations: {
+          children: true,
+        },
       });
 
       parentEntities.forEach((parentEntity) => {
@@ -99,15 +108,17 @@ describe(persistMany.name, () => {
     });
 
     it('seeds one-to-many', async () => {
-      const connection = await createInMemoryDatabase([
+      dataSource = await createInMemoryDataSource([
         ManyToOneParentEntityMock,
         ManyToOneChildEntityMock,
       ]);
 
-      await persistMany(2, ManyToOneChildEntityMock, connection);
+      await persistMany(2, ManyToOneChildEntityMock, dataSource);
 
-      const childEntities = await getRepository(ManyToOneChildEntityMock).find({
-        relations: ['parent'],
+      const childEntities = await dataSource.getRepository(ManyToOneChildEntityMock).find({
+        relations: {
+          parent: true,
+        },
       });
 
       childEntities.forEach((childEntity) => {
@@ -116,15 +127,17 @@ describe(persistMany.name, () => {
     });
 
     it('seeds many-to-many', async () => {
-      const connection = await createInMemoryDatabase([
+      dataSource = await createInMemoryDataSource([
         ManyToManyPrimaryEntityMock,
         ManyToManySecondaryEntityMock,
       ]);
 
-      await persistMany(2, ManyToManyPrimaryEntityMock, connection);
+      await persistMany(2, ManyToManyPrimaryEntityMock, dataSource);
 
-      const entities = await getRepository(ManyToManyPrimaryEntityMock).find({
-        relations: ['siblings'],
+      const entities = await dataSource.getRepository(ManyToManyPrimaryEntityMock).find({
+        relations: {
+          siblings: true,
+        },
       });
 
       entities.forEach((entity) => {
@@ -139,22 +152,24 @@ describe(persistMany.name, () => {
 
   describe('with embeds', () => {
     it('seeds unequal shallow embed', async () => {
-      const connection = await createInMemoryDatabase([EmbedEntityMock]);
+      dataSource = await createInMemoryDataSource([EmbedEntityMock]);
 
-      await persistMany(2, EmbedEntityMock, connection);
+      await persistMany(2, EmbedEntityMock, dataSource);
 
-      const [firstEntity, secondEntity] = await getRepository(EmbedEntityMock).find();
+      const [firstEntity, secondEntity] = await dataSource.getRepository(EmbedEntityMock).find();
 
       expect(firstEntity.name.first).not.toEqual(secondEntity.name.first);
       expect(firstEntity.name.last).not.toEqual(secondEntity.name.last);
     });
 
     it('seeds unequal deep embed', async () => {
-      const connection = await createInMemoryDatabase([DeepEmbedEntityMock]);
+      dataSource = await createInMemoryDataSource([DeepEmbedEntityMock]);
 
-      await persistMany(2, DeepEmbedEntityMock, connection);
+      await persistMany(2, DeepEmbedEntityMock, dataSource);
 
-      const [firstEntity, secondEntity] = await getRepository(DeepEmbedEntityMock).find();
+      const [firstEntity, secondEntity] = await dataSource
+        .getRepository(DeepEmbedEntityMock)
+        .find();
 
       expect(firstEntity.name.other.first).not.toEqual(secondEntity.name.other.first);
       expect(firstEntity.name.other.last).not.toEqual(secondEntity.name.other.last);
@@ -163,11 +178,13 @@ describe(persistMany.name, () => {
 
   describe('with concrete table inheritance', () => {
     it('seeds unequal properties from parent entities', async () => {
-      const connection = await createInMemoryDatabase([InheritanceEntityMock]);
+      dataSource = await createInMemoryDataSource([InheritanceEntityMock]);
 
-      await persistMany(2, InheritanceEntityMock, connection);
+      await persistMany(2, InheritanceEntityMock, dataSource);
 
-      const [firstEntity, secondEntity] = await getRepository(InheritanceEntityMock).find();
+      const [firstEntity, secondEntity] = await dataSource
+        .getRepository(InheritanceEntityMock)
+        .find();
 
       expect(firstEntity.name).not.toEqual(secondEntity.name);
       expect(firstEntity.address).not.toEqual(secondEntity.address);
@@ -177,16 +194,16 @@ describe(persistMany.name, () => {
 
   describe('with single table inheritance', () => {
     it('seeds unequal properties from parent entities', async () => {
-      const connection = await createInMemoryDatabase([
+      dataSource = await createInMemoryDataSource([
         SingleInheritanceEntityMock,
         SingleInheritanceChildEntityMock,
       ]);
 
-      await persistMany(2, SingleInheritanceChildEntityMock, connection);
+      await persistMany(2, SingleInheritanceChildEntityMock, dataSource);
 
-      const [firstEntity, secondEntity] = await getRepository(
-        SingleInheritanceChildEntityMock,
-      ).find();
+      const [firstEntity, secondEntity] = await dataSource
+        .getRepository(SingleInheritanceChildEntityMock)
+        .find();
 
       expect(firstEntity.name).not.toEqual(secondEntity.name);
       expect(firstEntity.age).not.toEqual(secondEntity.age);

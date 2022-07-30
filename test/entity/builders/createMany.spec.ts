@@ -3,7 +3,6 @@ import * as crypto from 'crypto';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Seed } from '../../../src';
 import { createMany } from '../../../src/entity/builders/createMany';
-import { removeInMemoryDatabase } from '../../utils/createInMemoryDatabase';
 import { DeepEmbedEntityMock } from '../mocks/embeds/DeepEmbedEntityMock';
 import { EmbedEntityMock } from '../mocks/embeds/EmbedEntityMock';
 import { InheritanceEntityMock } from '../mocks/inheritance/concrete-inheritance/InheritanceEntityMock';
@@ -16,8 +15,6 @@ import { OneToOnePrimaryEntityMock } from '../mocks/seeded-relations/one-to-one/
 import { OneToOneSecondaryEntityMock } from '../mocks/seeded-relations/one-to-one/OneToOneSecondaryEntityMock';
 
 describe(createMany.name, () => {
-  afterEach(() => removeInMemoryDatabase());
-
   it('returns multiple instances', () => {
     const ENTITY_COUNT = 2;
     const entities = createMany(ENTITY_COUNT, EntityMock);

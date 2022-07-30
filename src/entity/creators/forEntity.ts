@@ -1,10 +1,9 @@
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { create } from '../builders/create';
 import { createMany } from '../builders/createMany';
 import { persist } from '../builders/persist';
 import { persistMany } from '../builders/persistMany';
 import { Entity } from '../models/Entity';
-import { getConnectionForEntity } from '../utils/getConnectionForEntity';
 
 export interface EntityCreator<T> {
   create(): T;
@@ -13,7 +12,7 @@ export interface EntityCreator<T> {
   persistMany(amount: number): Promise<T[]>;
 }
 
-export function forEntity<T>(entity: Entity<T>, connection?: Connection): EntityCreator<T> {
+export function forEntity<T>(entity: Entity<T>, dataSource: DataSource): EntityCreator<T> {
   return {
     create() {
       return create(entity);
@@ -22,12 +21,10 @@ export function forEntity<T>(entity: Entity<T>, connection?: Connection): Entity
       return createMany(amount, entity);
     },
     persist() {
-      const conn = connection || getConnectionForEntity(entity);
-      return persist(entity, conn);
+      return persist(entity, dataSource);
     },
     persistMany(amount) {
-      const conn = connection || getConnectionForEntity(entity);
-      return persistMany(amount, entity, conn);
+      return persistMany(amount, entity, dataSource);
     },
   };
 }
