@@ -21,9 +21,7 @@ module.exports = {
         },
       },
     ],
-    '@semantic-release/changelog',
     ['@semantic-release/npm', { pkgRoot: 'dist' }],
     '@semantic-release/github',
-    ['@semantic-release/git', { assets: ['CHANGELOG.md'] }],
   ],
 };
