@@ -1,3 +1,20 @@
+## [1.3.0](https://github.com/joakimbugge/typeorm-seeder/compare/v1.2.1...v1.3.0) (2022-07-30)
+
+
+### Features
+
+* force shallow relation seeding to avoid endless loop ([ae2da0a](https://github.com/joakimbugge/typeorm-seeder/commit/ae2da0ab5bc27be8892deb01ca58a63f7f2b59cf))
+
+
+### Dependencies
+
+* **deps:** bump @hapi/topo from 5.1.0 to 6.0.0 ([#195](https://github.com/joakimbugge/typeorm-seeder/issues/195)) ([ca50d69](https://github.com/joakimbugge/typeorm-seeder/commit/ca50d692226012ad42f60feaafec949ef96c709b))
+* **deps:** bump glob from 7.2.0 to 8.0.3 ([#196](https://github.com/joakimbugge/typeorm-seeder/issues/196)) ([795f025](https://github.com/joakimbugge/typeorm-seeder/commit/795f025615e6011335fe25a4a0678cf9c6f1566c))
+* **deps:** bump npm from 8.4.0 to 8.15.1 ([#230](https://github.com/joakimbugge/typeorm-seeder/issues/230)) ([f3d4a3c](https://github.com/joakimbugge/typeorm-seeder/commit/f3d4a3c30b215cdee8c45cca232d3566ad43e186))
+* **deps:** bump semver-regex from 3.1.3 to 3.1.4 ([#231](https://github.com/joakimbugge/typeorm-seeder/issues/231)) ([b2fa350](https://github.com/joakimbugge/typeorm-seeder/commit/b2fa350ebbacdbc99f8f5d985694022d264efaef))
+* **deps:** bump terser from 5.10.0 to 5.14.2 ([#229](https://github.com/joakimbugge/typeorm-seeder/issues/229)) ([c7ccba3](https://github.com/joakimbugge/typeorm-seeder/commit/c7ccba393dd6ba697fb97bfe561fa4fe6fee16c5))
+* **deps:** bump tslib from 2.3.1 to 2.4.0 ([#166](https://github.com/joakimbugge/typeorm-seeder/issues/166)) ([fac7730](https://github.com/joakimbugge/typeorm-seeder/commit/fac773056076d9521f5e904a198e14dbd5b54843))
+
 ### [1.2.1](https://github.com/joakimbugge/typeorm-seeder/compare/v1.2.0...v1.2.1) (2022-03-22)
 
 
