@@ -6,7 +6,7 @@ import { resolveEmbedded } from '../utils/resolveEmbedded';
 import { resolveRelation } from '../utils/resolveRelation';
 
 export interface CreateManyOptions {
-  skipRelations: Entity[];
+  skipRelations: boolean;
 }
 
 export function createMany<T>(amount: number, entity: Entity<T>, options?: CreateManyOptions): T[] {
@@ -22,7 +22,7 @@ export function createMany<T>(amount: number, entity: Entity<T>, options?: Creat
       const relation = getRelationByPropertyName(entity, propertyName);
       const embedded = getEmbeddedByPropertyName(entity, propertyName);
 
-      if (relation && skipRelations.includes(relation.target)) {
+      if (relation && skipRelations) {
         continue;
       }
 
@@ -42,5 +42,5 @@ export function createMany<T>(amount: number, entity: Entity<T>, options?: Creat
 }
 
 function getDefaultOptions(): CreateManyOptions {
-  return { skipRelations: [] };
+  return { skipRelations: false };
 }
