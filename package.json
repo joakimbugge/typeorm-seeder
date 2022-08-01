@@ -42,7 +42,7 @@
   "dependencies": {
     "@hapi/topo": "^6.0.0",
     "app-root-path": "^3.0.0",
-    "glob": "^7.2.3",
+    "glob": "^8.0.3",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.1"
