@@ -42,7 +42,7 @@
   "dependencies": {
     "@hapi/topo": "^6.0.0",
     "app-root-path": "^3.0.0",
-    "glob": "^7.2.3",
+    "glob": "^8.0.3",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.1"
@@ -57,7 +57,7 @@
     "@semantic-release/git": "^10.0.0",
     "@tsconfig/node14": "^1.0.1",
     "@types/app-root-path": "^1.2.4",
-    "@types/glob": "^7.1.4",
+    "@types/glob": "^8.0.0",
     "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.178",
     "@types/node": "^18.6.2",
